@@ -8,6 +8,10 @@ import 'view-design/dist/styles/iview.css';
 import axios from 'axios';
 import VueAxios from "vue-axios";
 
+axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.timeout = 5000;
+axios.defaults.headers['Content-Type'] = 'application/json';
+
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.use(iView)

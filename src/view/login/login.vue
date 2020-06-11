@@ -19,7 +19,7 @@ export default {
   methods: {
     handleSubmit ({ username, password }) {
       console.log('username:' + username + ',password:' + password);
-      this.axios.post('', {'username': username, 'password': password}).then(res => {
+      this.axios.post('/health/login', {'username': username, 'password': password}).then(res => {
         console.log(res.data);
       })
     }
