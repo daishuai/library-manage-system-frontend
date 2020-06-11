@@ -23,3 +23,26 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+router.beforeEach((to, from ,next) => {
+  // 判断跳转的路由是否需要登陆
+  if (to.matched.some(record => record.meta.requireAuth)) {
+    // 是否有token信息
+    if (!localStorage.token) {
+      next({
+        path: '/',
+        // 将跳转的路由path作为参数，登陆成功成功后跳转到该路由
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+
+  // 退出登陆
+  // localStorage.removeItem('token')
+});
